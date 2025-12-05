@@ -91,3 +91,91 @@ footer {
   border-radius: 6px;
   cursor: pointer;
 }
+
+/* Таблица */
+/* Стили для таблицы */
+.table-wrapper {
+  background: white;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.empty-table {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--color-text-secondary);
+}
+
+.empty-table__hint {
+  font-size: 0.9rem;
+  margin-top: 10px;
+  opacity: 0.7;
+}
+
+.places-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-secondary);
+}
+
+.places-table th {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  text-align: left;
+  padding: 12px 15px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.places-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: top;
+}
+
+.places-table tbody tr:hover {
+  background-color: var(--color-bg-light);
+}
+
+.places-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Кнопки в таблице */
+.place-actions-cell {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-small {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  border-radius: var(--border-radius-sm);
+}
+
+.btn-load {
+  background-color: var(--color-secondary);
+}
+
+.btn-load:hover {
+  background-color: var(--color-secondary-dark);
+}
+
+.btn-delete {
+  background-color: var(--color-danger);
+}
+
+.btn-delete:hover {
+  background-color: var(--color-danger-dark);
+}
+
+/* ID места */
+.place-id {
+  cursor: pointer;
+  padding: 3px 8px;
+  background: var(--color-bg-light);
+  border-radius: 4px;
+  font-size: 0.85rem;
+}

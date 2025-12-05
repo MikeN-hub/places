@@ -17,6 +17,7 @@ export async function createPlace(placeData) {
       address: placeData.address,
       types: placeData.types || ['shoe park', 'shop'],
       website: placeData.website || 'http://example.com',
+      language: 'en-US',
     }),
   })
 
@@ -45,6 +46,7 @@ export async function updatePlace(placeId, updateData) {
       place_id: placeId,
       key: API_KEY,
       address: updateData.address,
+      name: updateData.name,
     }),
   })
 
