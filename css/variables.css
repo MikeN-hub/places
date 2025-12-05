@@ -1,0 +1,13 @@
+:root {
+  /* Fonts */
+  --font-family-primary: system-ui, sans-serif;
+  --font-family-secondary: 'Montserrat', 'Roboto';
+  --font-family-funny: 'Comic Neue', 'Bangers';
+
+  /* Colors */
+  --color-text-primary: #1c2531;
+  --color-text-secondary: #8a92a1;
+  --color-grey: #edf1f6;
+  --color-grey-light: #f9fbfd;
+  --color-grey-dark: #c7ced8;
+}

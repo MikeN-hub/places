@@ -1,0 +1,32 @@
+body {
+  height: 100vh;
+  width: 100vw;
+  font-family: var(--font-family-primary);
+  color: var(--color-text-primary);
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: var(--color-grey-light);
+}
+
+.page {
+  height: 100%;
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  column-gap: 32px;
+  flex-wrap: wrap;
+}
