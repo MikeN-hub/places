@@ -46,7 +46,171 @@
         <h2>Учебный проект: работа с CRUD API для управления геолокациями</h2>
       </header>
 
-      <div class="container main__container">Main</div>
+      <main class="main">
+        <!-- Таблица мест -->
+        <div class="main__table">
+          <div class="main-table__header">
+            <span class="main-table__title">Список мест</span>
+            <button
+              class="btn"
+              id="refresh-places"
+              type="button"
+            >
+              <span class="button__icon">↻</span>
+              Обновить
+            </button>
+          </div>
+
+          <div class="table-wrapper">
+            <div>test table</div>
+          </div>
+        </div>
+
+        <div class="wrapper">
+          <!-- Левая часть: Форма -->
+          <div>
+            <h2>Управление местом</h2>
+
+            <form class="main__form">
+              <div class="form__item">
+                <label
+                  for="place-name"
+                  class="form__label"
+                >
+                  Название места *
+                </label>
+                <input
+                  type="text"
+                  id="place-name"
+                  class="form__input"
+                  required
+                />
+              </div>
+
+              <div class="form__item">
+                <label
+                  for="place-address"
+                  class="form__label"
+                >
+                  Адрес *
+                </label>
+                <input
+                  type="text"
+                  id="place-address"
+                  class="form__input"
+                  required
+                />
+              </div>
+
+              <div class="form__item">
+                <label
+                  for="place-lat"
+                  class="form__label"
+                >
+                  Широта
+                </label>
+                <input
+                  type="number"
+                  id="place-lat"
+                  class="form__input"
+                  step="0.000001"
+                />
+              </div>
+
+              <div class="form__item">
+                <label
+                  for="place-lng"
+                  class="form__label"
+                >
+                  Долгота
+                </label>
+                <input
+                  type="number"
+                  id="place-lng"
+                  class="form__input"
+                  step="0.000001"
+                />
+              </div>
+
+              <div class="form__item">
+                <label
+                  for="place-phone"
+                  class="form__label"
+                >
+                  Телефон
+                </label>
+                <input
+                  type="tel"
+                  id="place-phone"
+                  class="form__input"
+                />
+              </div>
+
+              <div class="form__buttons">
+                <button
+                  type="submit"
+                  class="btn"
+                >
+                  Сохранить место
+                </button>
+                <button
+                  type="button"
+                  class="btn"
+                  id="clear-form"
+                >
+                  Очистить форму
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Правая часть: CRUD операции -->
+          <div class="main__actions">
+            <h2 class="actions__title">Действия с API</h2>
+
+            <div class="actions-buttons">
+              <button
+                class="actions-buttons__get btn"
+                id="get-place"
+              >
+                Получить место
+              </button>
+              <button
+                class="actions-buttons__create btn"
+                id="create-place"
+              >
+                Создать место
+              </button>
+              <button
+                class="actions-buttons__update btn"
+                id="update-place"
+              >
+                Обновить место
+              </button>
+              <button
+                class="actions-buttons__delete btn"
+                id="delete-place"
+              >
+                Удалить место
+              </button>
+            </div>
+
+            <div class="actions__place-id">
+              <label
+                for="place-id-input"
+                class="form__label"
+                >Place ID для операций:</label
+              >
+              <input
+                type="text"
+                id="place-id-input"
+                class="form__input"
+                placeholder="Введите place_id"
+              />
+            </div>
+          </div>
+        </div>
+      </main>
 
       <footer class="footer">
         <div class="footer__text">Places Manager © 2025</div>

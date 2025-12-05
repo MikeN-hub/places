@@ -10,4 +10,7 @@
   --color-grey: #edf1f6;
   --color-grey-light: #f9fbfd;
   --color-grey-dark: #c7ced8;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
