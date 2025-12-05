@@ -71,67 +71,78 @@
           <div>
             <h2>Управление местом</h2>
 
+            <!-- location -->
+            <div class="form__item">
+              <label
+                for="place-lat"
+                class="form__label"
+              >
+                Широта
+              </label>
+              <input
+                type="number"
+                id="place-lat"
+                class="form__input"
+                step="0.000001"
+                value="-38.383494"
+              />
+            </div>
+
+            <div class="form__item">
+              <label
+                for="place-lng"
+                class="form__label"
+              >
+                Долгота
+              </label>
+              <input
+                type="number"
+                id="place-lng"
+                class="form__input"
+                step="0.000001"
+                value="33.427362"
+              />
+            </div>
+
+            <!-- accuracy -->
+            <div class="form__item">
+              <label
+                for="place-accuracy"
+                class="form__label"
+              >
+                Точность (accuracy)
+              </label>
+              <input
+                type="number"
+                id="place-accuracy"
+                class="form__input"
+                value="50"
+                min="0"
+                max="100"
+                required
+              />
+              <small class="form__hint">Число от 0 до 100</small>
+            </div>
+
+            <!-- name -->
             <form class="main__form">
               <div class="form__item">
                 <label
                   for="place-name"
                   class="form__label"
                 >
-                  Название места *
+                  Название места
                 </label>
                 <input
                   type="text"
                   id="place-name"
                   class="form__input"
                   required
+                  value="Новое место"
                 />
               </div>
 
-              <div class="form__item">
-                <label
-                  for="place-address"
-                  class="form__label"
-                >
-                  Адрес *
-                </label>
-                <input
-                  type="text"
-                  id="place-address"
-                  class="form__input"
-                  required
-                />
-              </div>
-
-              <div class="form__item">
-                <label
-                  for="place-lat"
-                  class="form__label"
-                >
-                  Широта
-                </label>
-                <input
-                  type="number"
-                  id="place-lat"
-                  class="form__input"
-                  step="0.000001"
-                />
-              </div>
-
-              <div class="form__item">
-                <label
-                  for="place-lng"
-                  class="form__label"
-                >
-                  Долгота
-                </label>
-                <input
-                  type="number"
-                  id="place-lng"
-                  class="form__input"
-                  step="0.000001"
-                />
-              </div>
-
+              <!-- phone_number -->
               <div class="form__item">
                 <label
                   for="place-phone"
@@ -143,16 +154,79 @@
                   type="tel"
                   id="place-phone"
                   class="form__input"
+                  value="+71112223334"
+                />
+              </div>
+
+              <!-- address -->
+              <div class="form__item">
+                <label
+                  for="place-address"
+                  class="form__label"
+                >
+                  Адрес
+                </label>
+                <input
+                  type="text"
+                  id="place-address"
+                  class="form__input"
+                  required
+                  value="Ленинский проспект"
+                />
+              </div>
+
+              <!-- types -->
+              <div class="form__item">
+                <label
+                  for="place-types"
+                  class="form__label"
+                >
+                  Типы места
+                </label>
+                <select
+                  id="place-types"
+                  class="form__input"
+                  multiple
+                  size="4"
+                  required
+                >
+                  <option value="shoe park">Shoe Park</option>
+                  <option value="shop">Shop</option>
+                  <option value="park">Park</option>
+                  <option value="restaurant">Restaurant</option>
+                  <option value="cafe">Cafe</option>
+                  <option value="hotel">Hotel</option>
+                  <option value="museum">Museum</option>
+                  <option value="point_of_interest">Point of Interest</option>
+                  <option
+                    value="place"
+                    selected
+                  >
+                    Place
+                  </option>
+                  <option value="tourist_attraction">Tourist Attraction</option>
+                </select>
+                <small>Удерживайте Ctrl/Cmd для выбора нескольких вариантов</small>
+              </div>
+
+              <!-- website -->
+              <div class="form__item">
+                <label
+                  for="place-website"
+                  class="form__label"
+                >
+                  Веб-сайт
+                </label>
+                <input
+                  type="url"
+                  id="place-website"
+                  class="form__input"
+                  placeholder="https://example.com"
+                  value="http://example.com"
                 />
               </div>
 
               <div class="form__buttons">
-                <button
-                  type="submit"
-                  class="btn"
-                >
-                  Сохранить место
-                </button>
                 <button
                   type="button"
                   class="btn"
@@ -217,5 +291,10 @@
         <div class="footer__author">made by Navrotsky Nikita</div>
       </footer>
     </div>
+
+    <script
+      type="module"
+      src="js/main.js"
+    ></script>
   </body>
 </html>
