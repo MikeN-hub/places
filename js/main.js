@@ -77,30 +77,38 @@ function showMessage(text, type = 'info') {
 async function handleCreatePlace() {
   try {
     const formData = getFormData()
-    const result = await createPlace(formData)
 
-    // Сохраняем в таблицу
+    // Валидация координат
+    const latitude = parseFloat(formData.latitude) || -38.383494
+    const longitude = parseFloat(formData.longitude) || 33.427362
+
+    const result = await createPlace({
+      ...formData,
+      latitude,
+      longitude,
+    })
+
+    // Сохраняем с правильной структурой
     const placeToSave = {
       place_id: result.place_id,
       name: formData.name,
       address: formData.address,
       phone_number: formData.phone,
       location: {
-        lat: parseFloat(formData.latitude) || 0,
-        lng: parseFloat(formData.longitude) || 0,
+        lat: latitude,
+        lng: longitude,
       },
       types: formData.types,
-      accuracy: formData.accuracy,
+      accuracy: parseInt(formData.accuracy) || 50,
       website: formData.website,
+      language: 'en-US',
     }
 
     savePlaceToStorage(placeToSave)
     renderPlacesTable()
 
     showMessage(`Место создано! ID: ${result.place_id}`, 'success')
-    clearForm()
 
-    // Автоматически вставляем созданный ID в поле для операций
     document.getElementById('place-id-input').value = result.place_id
   } catch (error) {
     showMessage(`Ошибка: ${error.message}`, 'error')
@@ -166,6 +174,56 @@ async function handleDeletePlace() {
     clearForm()
   } catch (error) {
     showMessage(`Ошибка: ${error.message}`, 'error')
+  }
+}
+
+// Кнопка "Получить место"
+async function handleGetPlace() {
+  const placeId = document.getElementById('place-id-input').value
+
+  if (!placeId) {
+    showMessage('Введите place_id для получения', 'error')
+    return
+  }
+
+  try {
+    const place = await getPlace(placeId)
+
+    // Заполняем форму данными
+    fillForm(place)
+
+    // БЕЗОПАСНОЕ сохранение в localStorage
+    const placeToSave = {
+      place_id: placeId,
+      name: place.name || '',
+      address: place.address || '',
+      phone_number: place.phone_number || '',
+      location: {
+        lat: place.location?.lat ?? place.latitude ?? 0,
+        lng: place.location?.lng ?? place.longitude ?? 0,
+      },
+      types: Array.isArray(place.types) ? place.types : place.types ? [place.types] : [],
+      accuracy: place.accuracy || 50,
+      website: place.website || 'http://google.com',
+      language: place.language || 'en-US',
+    }
+
+    savePlaceToStorage(placeToSave)
+    renderPlacesTable()
+
+    showPlaceDetails(place)
+  } catch (error) {
+    // Если не удалось получить из API, пробуем из localStorage
+    const places = getAllPlaces()
+    const localPlace = places.find((p) => p.place_id === placeId)
+
+    if (localPlace) {
+      fillForm(localPlace)
+      showMessage(`Место "${localPlace.name}" загружено из локального хранилища`, 'info')
+      showPlaceInfoAlert(localPlace)
+    } else {
+      showMessage(`Ошибка: ${error.message}`, 'error')
+    }
   }
 }
 
@@ -343,6 +401,22 @@ function renderPlacesTable() {
   attachTableEventListeners()
 }
 
+// показать информацию в alert
+function showPlaceInfoAlert(place) {
+  const info = `
+Название: ${place.name || 'Без названия'}
+Адрес: ${place.address || 'Не указан'}
+Телефон: ${place.phone_number || place.phone || 'Не указан'}
+Координаты: ${place.location?.lat || place.latitude || '?'}, ${place.location?.lng || place.longitude || '?'}
+Вебсайт: ${place.website || 'Не указан'}
+Типы: ${place.types ? (Array.isArray(place.types) ? place.types.join(', ') : place.types) : 'Не указаны'}
+Точность: ${place.accuracy || 50}
+ID: ${place.place_id || 'N/A'}
+  `
+
+  alert(`Место успешно загружено!\n\n${info}`)
+}
+
 // Прикрепить обработчики событий для таблицы
 function attachTableEventListeners() {
   // Кнопки "Загрузить" в таблице
@@ -396,6 +470,7 @@ async function loadPlaceToForm(placeId) {
       fillForm(localPlace)
       document.getElementById('place-id-input').value = placeId
       showMessage(`Место "${localPlace.name}" загружено из локального хранилища`, 'info')
+      showPlaceInfoAlert(localPlace)
     } else {
       showMessage(`Место с ID ${placeId} не найдено`, 'error')
     }

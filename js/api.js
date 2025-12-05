@@ -39,12 +39,11 @@ export async function getPlace(placeId) {
 export async function updatePlace(placeId, updateData) {
   if (!placeId) throw new Error('Не указан place_id')
 
-  const response = await fetch(`${API_BASE}/update/json`, {
+  const response = await fetch(`${API_BASE}/update/json?key=${API_KEY}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       place_id: placeId,
-      key: API_KEY,
       address: updateData.address,
       name: updateData.name,
     }),

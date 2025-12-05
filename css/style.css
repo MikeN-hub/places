@@ -37,6 +37,10 @@ main {
   gap: 16px;
 }
 
+.main-table__title {
+  text-align: center;
+}
+
 .main__form {
   display: flex;
   flex-direction: column;
@@ -64,6 +68,10 @@ input {
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+.form__input {
+  flex-grow: 1;
 }
 
 .main__actions {
