@@ -11,6 +11,7 @@
   "author": "Nekit <nekit012010@yandex.ru>",
   "license": "ISC",
   "devDependencies": {
-    "live-server": "^1.2.2"
+    "live-server": "1.2.2",
+    "prettier": "3.7.4"
   }
 }
